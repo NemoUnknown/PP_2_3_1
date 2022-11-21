@@ -29,7 +29,7 @@ public class UserController {
 
 	public UserController(UserService userService) {
 		this.userService = userService;
-		addUsers();
+		userService.addUsers();
 	}
 
 	@GetMapping("users/add")
@@ -73,10 +73,4 @@ public class UserController {
 		return "redirect:/users";
 	}
 
-	private void addUsers() {
-		userService.add(new User("Иван", "Иванов", "ivanoff@mail.ru"));
-		userService.add(new User("Петр", "Петров", "petr94@ya.ru"));
-		userService.add(new User("Александр", "Сидоров", "SidAlex@mail.ru"));
-		userService.add(new User("Семен", "Семенов", "semsem99@ya.ru"));
-	}
 }

@@ -11,7 +11,6 @@ import javax.annotation.PreDestroy;
 import java.util.List;
 
 @Service
-@Transactional
 public class UserServiceImp implements UserService {
 
     private UserDAO userDAO;
@@ -21,6 +20,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    @Transactional
     public void add(User user) {
         userDAO.add(user);
     }
@@ -38,11 +38,13 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    @Transactional
     public void delete(long id) {
         userDAO.delete(id);
     }
 
     @Override
+    @Transactional
     public void change(long id, User user) {
         userDAO.change(id, user);
     }
@@ -55,5 +57,14 @@ public class UserServiceImp implements UserService {
     @PreDestroy
     private void destroy() {
         System.out.println("Уничтожен компонент UserService");
+    }
+
+    @Override
+    @Transactional
+    public void addUsers() {
+        userDAO.add(new User("Иван", "Иванов", "ivanoff@mail.ru"));
+        userDAO.add(new User("Петр", "Петров", "petr94@ya.ru"));
+        userDAO.add(new User("Александр", "Сидоров", "SidAlex@mail.ru"));
+        userDAO.add(new User("Семен", "Семенов", "semsem99@ya.ru"));
     }
 }
